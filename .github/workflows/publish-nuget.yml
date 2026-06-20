@@ -1,0 +1,73 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    branches: [main, master]
+    tags: ["v*"]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Package version (e.g. 1.2.3)"
+        required: false
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore
+        run: dotnet restore NetBoilerplate.slnx
+
+      - name: Build
+        run: dotnet build NetBoilerplate.slnx --no-restore -c Release
+
+      - name: Set version
+        id: version
+        shell: pwsh
+        run: |
+          if ("${{ github.event.inputs.version }}" -ne "") {
+            $v = "${{ github.event.inputs.version }}"
+          } elseif ("${{ github.ref_type }}" -eq "tag") {
+            $v = "${{ github.ref_name }}" -replace "^v", ""
+          } else {
+            $v = "1.0.${{ github.run_number }}"
+          }
+          echo "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Pack template
+        run: nuget pack NetBoilerplate.Api.nuspec -Version ${{ steps.version.outputs.version }} -OutputDirectory ./artifacts
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetBoilerplate.Api.${{ steps.version.outputs.version }}.nupkg
+          path: ./artifacts/*.nupkg
+
+  publish:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Push to NuGet
+        run: |
+          dotnet nuget push *.nupkg `
+            --api-key ${{ secrets.NUGET_API_KEY }} `
+            --source https://api.nuget.org/v3/index.json `
+            --skip-duplicate

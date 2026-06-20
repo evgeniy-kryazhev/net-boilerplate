@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NetBoilerplate",
+  "classifications": [
+    "Web",
+    "API",
+    "ASP.NET",
+    "Identity"
+  ],
+  "name": "ASP.NET Core API with Identity",
+  "description": "ASP.NET Core Web API project template with ASP.NET Core Identity (bearer tokens), role/permission management, EF Core + SQL Server, Minio file storage, Serilog, Scalar/OpenAPI, and localization.",
+  "identity": "NetBoilerplate.Api",
+  "shortName": "netboilerplate",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "NetBoilerplate",
+  "preferNameDirectory": true,
+  "symbols": {
+    "UseMinio": {
+      "type": "parameter",
+      "defaultValue": "true",
+      "description": "Include Minio file storage setup"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".template.config/**",
+            ".github/**",
+            "bin/**",
+            "obj/**",
+            ".vs/**",
+            "*.DotSettings.user",
+            "*.nuspec",
+            "test/**",
+            "qodana.yaml"
+          ]
+        }
+      ]
+    }
+  ]
+}

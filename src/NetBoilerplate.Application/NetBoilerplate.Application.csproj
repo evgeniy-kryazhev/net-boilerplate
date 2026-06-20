@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>NetBoilerplate.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NetBoilerplate.Application.Dto\NetBoilerplate.Application.Dto.csproj" />
+      <ProjectReference Include="..\NetBoilerplate.Domain\NetBoilerplate.Domain.csproj" />
+      <ProjectReference Include="..\NetBoilerplate.Shared\NetBoilerplate.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

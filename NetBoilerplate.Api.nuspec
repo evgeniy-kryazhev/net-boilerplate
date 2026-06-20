@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>NetBoilerplate.Api</id>
+    <version>$version$</version>
+    <title>ASP.NET Core API with Identity</title>
+    <authors>NetBoilerplate</authors>
+    <owners>NetBoilerplate</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/NetBoilerplate/NetBoilerplate</projectUrl>
+    <icon>icon.png</icon>
+    <description>
+      ASP.NET Core Web API project template with ASP.NET Core Identity (bearer tokens),
+      role/permission management, EF Core + SQL Server, Minio file storage, Serilog,
+      Scalar/OpenAPI, and localization.
+    </description>
+    <tags>web api aspnet identity efcore sqlserver serilog scalar openapi minio template</tags>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="**" target="content" exclude="
+      **\bin\**;
+      **\obj\**;
+      **\.vs\**;
+      **\*.DotSettings.user;
+      test\**;
+      qodana.yaml;
+      NetBoilerplate.Api.nuspec;
+      .github\**" />
+  </files>
+</package>

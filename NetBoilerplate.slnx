@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NetBoilerplate.Application.Dto/NetBoilerplate.Application.Dto.csproj" />
+    <Project Path="src/NetBoilerplate.Application/NetBoilerplate.Application.csproj" />
+    <Project Path="src/NetBoilerplate.Domain/NetBoilerplate.Domain.csproj" />
+    <Project Path="src/NetBoilerplate.Infrastructure/NetBoilerplate.Infrastructure.csproj" />
+    <Project Path="src/NetBoilerplate.Migrator/NetBoilerplate.Migrator.csproj" />
+    <Project Path="src/NetBoilerplate.Shared/NetBoilerplate.Shared.csproj" />
+    <Project Path="src/NetBoilerplate.Web/NetBoilerplate.Web.csproj" />
+  </Folder>
+</Solution>
